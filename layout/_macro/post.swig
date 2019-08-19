@@ -336,22 +336,36 @@
         </div>
         <div class="list-content">
         <div class="list-body">
-        <a href="{{post.path}}" title="{{post.title}}" class="list-title text-lg h-2x"><span class="badge badge-hot">推荐</span>{{post.title}}</a>
+        <a href="{{post.path}}" title="{{post.title}}" class="list-title text-lg h-2x">
+          {%- if post.top %}
+            <span class="badge badge-hot">推荐</span>
+          {%- endif %}
+          {{post.title}}
+        </a>
         <div class="list-desc d-none d-md-block text-sm text-secondary my-3">
-          <div class="h-2x ">{{post.content.substring(0, 200)}}</div>
+          <div class="h-2x ">{{ post.excerpt }}</div>
         </div>
         </div>
         <div class="list-footer">
           <div class="d-flex flex-fill align-items-center text-muted text-xs">
             <div class="d-none d-md-inline-block"><a href="/{{post.path}}" target="_blank" class="flex-avatar w-20 "><img alt="" src="{{post.image}}" class="avatar avatar-20 photo w-20 loaded" height="20" width="20" data-src="{{post.image}}" data-nclazyload="true" data-srcset="" srcset="" data-was-processed="true"></a></div>
-            <div class="d-inline-block ml-md-2"><a href="/{{post.path}}" title="由{{author ? author : 'Luuman'}}发布" rel="author">{{author ? author : 'Luuman'}}</a></div>
+            {%- if post.author %}
+              <div class="d-inline-block ml-md-2">
+                <a href="/{{post.path}}" title="由{{post.author}}发布" rel="author">{{post.author}}</a>
+              </div>
+            {%- endif %}
+            {%- if !post.author %}
+              <div class="d-inline-block ml-md-2">
+                <a href="/{{post.path}}" title="由{{author}}发布" rel="author">{{author}}</a>
+              </div>
+            {%- endif %}
             <div class="d-inline-block mx-1 mx-md-2"><i class="text-primary">—</i></div>
             <div class="d-inline-block">
-              <a href="https://www.suxing.me/category/blog" target="_blank">博客</a>
+              <a href="{{post.path}}" target="_blank">博客</a>
             </div>
             <div class="flex-fill"></div>
           <div>
-          <time class="mx-1">{{post.author ? post.author : 'Luuman'}}</time>
+          <time class="mx-1"></time>
         </div>
           </div></div>
         </div>
