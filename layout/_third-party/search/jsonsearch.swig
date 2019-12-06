@@ -19,5 +19,3 @@
   </div>
 </div>
 <script src="{{ url_for(theme.js) }}/json-search.js?v={{ version }}"></script>
-// <script src="http://luuman.synology.me:6705/markdown/json-search.js"></script>
-

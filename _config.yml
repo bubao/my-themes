@@ -1189,20 +1189,20 @@ css: css
 js: js
 images: images
 
-adsense: [
-  {
-    img: 'https://image.yktour.com.cn/g1/M00/07/80/CgAMDF1aOQmABXszAADZNTNgD7c637.jpg',
-    title: '广告位',
-    url: 'https://www.baidu.com/'
-  },
-  {
-    img: 'https://image.yktour.com.cn/g1/M00/07/80/CgAMDF1aOQmABXszAADZNTNgD7c637.jpg',
-    title: '广告位',
-    url: 'https://www.baidu.com/'
-  },
-  {
-    img: 'https://image.yktour.com.cn/g1/M00/07/80/CgAMDF1aOQmABXszAADZNTNgD7c637.jpg',
-    title: '广告位',
-    url: 'https://www.baidu.com/'
-  }
-]
+# adsense: [
+#   {
+#     img: 'https://image.yktour.com.cn/g1/M00/07/80/CgAMDF1aOQmABXszAADZNTNgD7c637.jpg',
+#     title: '广告位',
+#     url: 'https://www.baidu.com/'
+#   },
+#   {
+#     img: 'https://image.yktour.com.cn/g1/M00/07/80/CgAMDF1aOQmABXszAADZNTNgD7c637.jpg',
+#     title: '广告位',
+#     url: 'https://www.baidu.com/'
+#   },
+#   {
+#     img: 'https://image.yktour.com.cn/g1/M00/07/80/CgAMDF1aOQmABXszAADZNTNgD7c637.jpg',
+#     title: '广告位',
+#     url: 'https://www.baidu.com/'
+#   }
+# ]

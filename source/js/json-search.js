@@ -4,25 +4,25 @@
     data: [],
     arrList: [],
     oldList: [],
-    init () {
+    init() {
       this.fetchJson()
     },
-    fetchJson () {
+    fetchJson() {
       window.fetch(CONFIG.root + 'content.json?t=' + (+ new Date()), {
         method: 'get',
       }).then((res) => {
         console.log(res)
         return res.json()
       }).then((data) => {
-        console.log(data)
+        // console.log(data)
         this.data = data
-        this.searchList()
+        // this.searchList()
       }).catch((err) => {
         console.log(err)
       });
     },
     // 搜索字符串里面是否存在关键字
-    isSreachIndexOF (oldstr, kw) {
+    isSreachIndexOF(oldstr, kw) {
       // console.log(oldstr, kw)
       var istrue = false
       // console.log('isSreachIndexOF', oldstr && toString.call(oldstr) === '[object Array]')
@@ -37,7 +37,7 @@
       istrue = oldstr.toLowerCase().indexOf(kw.toLowerCase()) > -1
       return istrue
     },
-    searchList () {
+    searchList() {
       let divList = ''
       this.data.forEach(item => {
         divList += `
@@ -52,28 +52,32 @@
           </div>
         </li>`
       })
-          // <p class="search-content">${item.content}</p>
+      // <p class="search-content">${item.content}</p>
       $('.search-result-list').html(divList)
     },
-    clear () {
+    clear() {
       this.oldList.forEach(item => {
         $(".search-result-list li")[item].style.display = 'none'
       })
       this.oldList = []
     },
-    add () {
+    add() {
       this.arrList.forEach(item => {
         $(".search-result-list li")[item].style.display = 'block'
       })
       this.oldList = this.arrList
     },
-    searchGo (keywolds) {
+    searchGo(keywolds) {
       this.arrList = []
       if (!keywolds) {
         if (this.oldList.length) this.clear()
       } else {
         this.data.forEach((item, index) => {
-          if (this.isSreachIndexOF(item.title, keywolds) || this.isSreachIndexOF(item.tags.map(item => item.name).join('-'), keywolds) || this.isSreachIndexOF(item.categories.map(item => item.name).join('-'), keywolds) || this.isSreachIndexOF(item.content, keywolds)) {
+          if (
+            this.isSreachIndexOF(item.title, keywolds) ||
+            this.isSreachIndexOF(item.tags.map(tag => tag.name).join('-'), keywolds) ||
+            this.isSreachIndexOF(item.categories.map(item => item.name).join('-'), keywolds) ||
+            this.isSreachIndexOF(item.content, keywolds)) {
             this.arrList.push(index)
           }
         })
@@ -86,21 +90,21 @@
      * @param str 指定的时间字符串，如yyyy-MM-dd HH:mm:ss
      * @param now 当前时间，允许时间戳，GMT时间，如果该参数为undefined，则使用浏览器时间。
      */
-    getFriendlyTime (str, now) {
+    getFriendlyTime(str, now) {
       var currentTime = new Date(now);
       var arr = str.split(/\s+/gi);
       var temp = 0, arr1, arr2, oldTime, delta;
-      var getIntValue = function(ss, defaultValue){
-        try{
+      var getIntValue = function (ss, defaultValue) {
+        try {
           return parseInt(ss, 10);
-        }catch (e){
+        } catch (e) {
           return defaultValue;
         }
       };
-      var getWidthString = function(num){
+      var getWidthString = function (num) {
         return num < 10 ? ('0' + num) : num;
       };
-      if(arr.length >= 2){
+      if (arr.length >= 2) {
         arr1 = arr[0].split(/[\/\-]/gi);
         arr2 = arr[1].split(':');
         oldTime = new Date();
@@ -124,7 +128,7 @@
           return Math.floor(delta / (24 * 60 * 60 * 1000)) + '天前';
         } else if (delta < 24 * 60 * 60 * 1000 * 30 * 12) {
           return Math.floor(delta / (24 * 60 * 60 * 1000 * 30)) + '月前';
-        } else if (currentTime.getFullYear() != oldTime.getFullYear()){
+        } else if (currentTime.getFullYear() != oldTime.getFullYear()) {
           return [getWidthString(oldTime.getFullYear()), getWidthString(oldTime.getMonth() + 1), getWidthString(oldTime.getDate())].join('-')
         } else {
           return [getWidthString(oldTime.getMonth() + 1), getWidthString(oldTime.getDate())].join('-');
@@ -144,7 +148,7 @@
 
   // 回车事件
   $('#local-search-input').keydown(event => {
-    if (event.keyCode==13) {
+    if (event.keyCode == 13) {
       let val = $('#local-search-input').val()
       // if (window.history && window.history.pushState) val ? history.pushState({}, 'jsdig', '?search=' + val) : history.pushState({}, 'jsdig', '/')
       searchTool.searchGo(val)
@@ -154,9 +158,9 @@
     $(".local-search-pop-overlay, .local-search-popup").hide();
     $('body')[0].className = ''
   })
-  
+
   // 打开搜索
-  $('.popup-trigger').click(function(e) {
+  $('.popup-trigger').click(function (e) {
     console.log('Open Search')
     $(".local-search-pop-overlay, .local-search-popup").show();
     $('body')[0].className = 'modal-open'

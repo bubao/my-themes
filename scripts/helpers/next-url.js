@@ -1,4 +1,11 @@
 /**
+ * @Description: 
+ * @Author: bubao
+ * @Date: 2019-12-06 14:22:18
+ * @LastEditors: bubao
+ * @LastEditTime: 2019-12-06 18:22:54
+ */
+/**
  * next-url.js | https://theme-next.org/api/helpers/next-url/
  */
 
@@ -6,7 +13,7 @@
 
 'use strict';
 
-hexo.extend.helper.register('next_url', function(path, text, options) {
+hexo.extend.helper.register('next_url', function (path, text, options, escape) {
   var htmlTag = require('hexo-util').htmlTag;
   var config = this.config;
   var url = require('url');
@@ -24,7 +31,7 @@ hexo.extend.helper.register('next_url', function(path, text, options) {
     exturl = 'exturl';
     var encoded = Buffer.from(path).toString('base64');
     attrs = {
-      class     : exturl,
+      class: exturl,
       'data-url': encoded
     };
   }
@@ -66,5 +73,5 @@ hexo.extend.helper.register('next_url', function(path, text, options) {
     }
   }
 
-  return htmlTag(tag, attrs, text);
+  return htmlTag(tag, attrs, text, escape === undefined);
 });

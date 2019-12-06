@@ -16,7 +16,7 @@
       {%- set menuBadge = menu_badge.render(name) | trim %}
     {%- endif %}
 
-    {{ next_url(itemURL, menuIcon + menuText + menuBadge, {rel: 'section'}) }}
+    {{ next_url(itemURL, menuIcon + menuText + menuBadge, {rel: 'section'}, true) }}
 
   </li>
 
